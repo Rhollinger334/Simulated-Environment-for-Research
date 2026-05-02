@@ -35,7 +35,15 @@ python -m sim_env.experiments.exp08_seeing_slices
 python -m sim_env.experiments.exp09_hearing_4d
 python -m sim_env.experiments.exp10_chirality_flip_4d
 python -m sim_env.experiments.exp11_unknot_in_4d
+python -m sim_env.experiments.exp12_slice_detector
+python -m sim_env.experiments.exp13_communication_protocol
 ```
+
+## Project SLICE
+
+A buildable cheap (~$50) acoustic detector for 4D-source signatures.
+See [`docs/PROJECT_SLICE.md`](docs/PROJECT_SLICE.md) for the build
+manual and operating procedure.
 
 ## Research logs
 
@@ -45,3 +53,5 @@ python -m sim_env.experiments.exp11_unknot_in_4d
 - [`reports/02_seeing_hearing_4d.md`](reports/02_seeing_hearing_4d.md)
   — visual & auditory signatures of a 4D entity from a 3D observer's
   perspective, plus chirality flipping and the failure of knots in 4D.
+- [`reports/03_project_slice.md`](reports/03_project_slice.md)
+  — design, validation, and protocol for the cheap detector apparatus.
