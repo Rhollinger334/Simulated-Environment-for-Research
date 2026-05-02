@@ -31,6 +31,10 @@ python -m sim_env.experiments.exp04_minkowski
 python -m sim_env.experiments.exp05_natural_coupling
 python -m sim_env.experiments.exp06_marginal_atom
 python -m sim_env.experiments.exp07_hopf
+python -m sim_env.experiments.exp08_seeing_slices
+python -m sim_env.experiments.exp09_hearing_4d
+python -m sim_env.experiments.exp10_chirality_flip_4d
+python -m sim_env.experiments.exp11_unknot_in_4d
 ```
 
 ## Research logs
@@ -38,3 +42,6 @@ python -m sim_env.experiments.exp07_hopf
 - [`reports/01_fourth_dimension.md`](reports/01_fourth_dimension.md)
   — six 4-polytopes, SO(4) double rotations, why 4D atoms are unstable,
   Lorentz boosts & twin paradox, and the Hopf fibration.
+- [`reports/02_seeing_hearing_4d.md`](reports/02_seeing_hearing_4d.md)
+  — visual & auditory signatures of a 4D entity from a 3D observer's
+  perspective, plus chirality flipping and the failure of knots in 4D.
