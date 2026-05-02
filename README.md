@@ -38,6 +38,10 @@ python -m sim_env.experiments.exp11_unknot_in_4d
 python -m sim_env.experiments.exp12_slice_detector
 python -m sim_env.experiments.exp13_communication_protocol
 python -m sim_env.experiments.exp14_viz_hopf
+python -m sim_env.experiments.exp15_24cell_quaternions
+python -m sim_env.experiments.exp16_kissing_24cell
+python -m sim_env.experiments.exp17_E8_lattice
+python -m sim_env.experiments.exp18_viz_24cell
 ```
 
 ## Visualisations
@@ -45,6 +49,7 @@ python -m sim_env.experiments.exp14_viz_hopf
 Open in any browser (no server needed):
 - `viz/hopf_fibration.html` — interactive Hopf fibration
 - `viz/tesseract_slice.html` — slider-animated tesseract cross-sections
+- `viz/24cell_quaternions.html` — the 24-cell coloured by binary-tetrahedral-group element order
 
 ## Standing instructions
 
@@ -69,3 +74,6 @@ manual and operating procedure.
   perspective, plus chirality flipping and the failure of knots in 4D.
 - [`reports/03_project_slice.md`](reports/03_project_slice.md)
   — design, validation, and protocol for the cheap detector apparatus.
+- [`reports/04_24cell_E8_exceptional.md`](reports/04_24cell_E8_exceptional.md)
+  — the 24-cell as the binary tetrahedral group of unit quaternions,
+  K(4)=24 saturation, and E_8 in 8D as the natural sequel.
