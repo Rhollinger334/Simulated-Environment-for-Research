@@ -9,6 +9,16 @@ have to type costs your time. Both go away if we agree once, here.
 
 ---
 
+## Self-imposed rules (added by me, applies in every session)
+
+1. **Every claim of novelty must be preceded by a WebSearch.** If I
+   write "novel," "haven't seen," "first," or "appears to be new"
+   anywhere, I must have actually searched. Otherwise downgrade to
+   "I haven't checked." (Added 2026-05-02 after Log 08 audit caught
+   me overselling.)
+2. **Match language to delivery.** Don't reach for "groundbreaking"
+   framings when delivering "useful methodological consolidation."
+
 ## What you've already authorized (re-stating for clarity)
 
 - Operate on branch `claude/simulated-science-environment-S3UP4`.
