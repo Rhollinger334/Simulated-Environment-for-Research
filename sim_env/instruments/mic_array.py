@@ -129,26 +129,50 @@ def fit_hyperbolic_source(mic_positions: np.ndarray,
 
 
 def slice_signature(slope: float, R2: float, w_0: float,
-                    w_0_uncertainty: float) -> dict:
-    """Combine the two tests into a single SLICE flag.
+                    w_0_uncertainty: float,
+                    rotational_test: dict = None) -> dict:
+    """Combine the available tests into a single SLICE flag.
 
-    Both tests must agree:
-      - tail slope in [-2.5, -1.5] (consistent with 1/t^2 envelope)
-      - tail fit quality R^2 > 0.85 (a real power law, not random)
-      - w_0 / w_0_uncertainty > 3   (offset detected at >3 sigma)
+    All tests must agree:
+      - tail slope in [-2.5, -1.5] AND R^2 > 0.85    (slope_test)
+      - |w_0| > 3 sigma_w0                            (geometry_test)
+      - if rotational_test provided: std(w_0)/mean(w_0) < 0.20  (4D rigid)
 
-    Returns a dict including a string verdict.
-    """
+    The rotational_test is the only criterion with no known 3D
+    false-positive analog. When available it dominates the verdict.
+    Pass it as: {"sigma_over_mean": float, "n_rotations": int}
+
+    Returns a dict with the per-test booleans and a summary verdict."""
     slope_ok = (-2.5 <= slope <= -1.5) and (R2 > 0.85)
     geom_ok  = abs(w_0) > 3.0 * max(w_0_uncertainty, 1e-9)
-    if slope_ok and geom_ok:
-        verdict = "SLICE_POSITIVE"
-    elif slope_ok and not geom_ok:
-        verdict = "POWER_LAW_NO_OFFSET"        # weird but flat, follow up
-    elif geom_ok and not slope_ok:
-        verdict = "OFFSET_NO_POWER_LAW"        # likely instrumentation
+    rot_ok   = (rotational_test is not None
+                and rotational_test.get("n_rotations", 0) >= 4
+                and rotational_test.get("sigma_over_mean", 1.0) < 0.20)
+    rot_attempted = rotational_test is not None
+
+    if rot_attempted:
+        # Rotational test dominates when present
+        if rot_ok and geom_ok:
+            verdict = "SLICE_POSITIVE_RIGOROUS"        # the gold standard
+        elif rot_ok and not geom_ok:
+            verdict = "INVARIANT_BUT_BELOW_GEOM_THRESHOLD"
+        elif not rot_ok and geom_ok:
+            verdict = "GEOMETRY_LOOKS_4D_BUT_NOT_ROTATIONALLY_INVARIANT"
+        else:
+            verdict = "NULL"
     else:
-        verdict = "NULL_3D_SOURCE"
+        # Legacy single-orientation interpretation (less rigorous)
+        if slope_ok and geom_ok:
+            verdict = "SLICE_POSITIVE_PROVISIONAL"
+        elif slope_ok and not geom_ok:
+            verdict = "POWER_LAW_NO_OFFSET"
+        elif geom_ok and not slope_ok:
+            verdict = "OFFSET_NO_POWER_LAW"
+        else:
+            verdict = "NULL_3D_SOURCE"
+
     return {"slope_test_pass": slope_ok,
             "geometry_test_pass": geom_ok,
+            "rotational_test_pass": rot_ok,
+            "rotational_test_attempted": rot_attempted,
             "verdict": verdict}
