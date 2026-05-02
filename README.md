@@ -37,7 +37,21 @@ python -m sim_env.experiments.exp10_chirality_flip_4d
 python -m sim_env.experiments.exp11_unknot_in_4d
 python -m sim_env.experiments.exp12_slice_detector
 python -m sim_env.experiments.exp13_communication_protocol
+python -m sim_env.experiments.exp14_viz_hopf
 ```
+
+## Visualisations
+
+Open in any browser (no server needed):
+- `viz/hopf_fibration.html` — interactive Hopf fibration
+- `viz/tesseract_slice.html` — slider-animated tesseract cross-sections
+
+## Standing instructions
+
+See [`docs/STANDING_INSTRUCTIONS.md`](docs/STANDING_INSTRUCTIONS.md) for
+the persistent rules of engagement and the prompt patterns that produce
+the highest-throughput sessions. [`docs/QUESTIONS.md`](docs/QUESTIONS.md)
+collects ambiguous decisions for batch resolution.
 
 ## Project SLICE
 
